@@ -1,0 +1,35 @@
+{
+  "issuer": "GitHub",
+  "desc": "GitHub",
+  "website": "http://localhost:3000",
+  "APIs": [
+    {
+      "host": "api.github.com",
+      "intercept": {
+        "url": "user",
+        "method": "GET"
+      },
+      "assert": [
+        {
+          "key": "id",
+          "value": "x",
+          "operation": "!=",
+          "isPublicField": true
+        },
+        {
+          "key": "login",
+          "value": "x",
+          "operation": "!=",
+          "isPublicField": true
+        }
+      ],
+      "nullifier": "id"
+    }
+  ],
+  "HRCondition": ["GitHub Account Owner"],
+  "tips": {
+    "message": "When you successfully log in, please click the 'Start' button to initiate the verification process."
+  },
+  "id": "0x97e632ef17474add84bd0a5fe9fcaf95",
+  "category": "Educational"
+}

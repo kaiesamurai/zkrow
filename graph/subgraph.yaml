@@ -1,0 +1,53 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: GitHubFundManager
+    network: sepolia
+    source:
+      address: "0x76E4D8e6253B139DE8fcF1Fa6b4108157BF2340A"
+      abi: GitHubFundManager
+      startBlock: 5396888
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - CalculationRequested
+        - ChainLinkFunctionFailed
+        - FundDistributed
+        - Funded
+        - GitHubPassRegistered
+        - OwnershipTransferRequested
+        - OwnershipTransferred
+        - RequestFulfilled
+        - RequestSent
+        - ShareWithdrwan
+      abis:
+        - name: GitHubFundManager
+          file: ./abis/GitHubFundManager.json
+      eventHandlers:
+        - event: CalculationRequested(indexed uint256,string)
+          handler: handleCalculationRequested
+        - event: ChainLinkFunctionFailed(indexed uint256,bytes)
+          handler: handleChainLinkFunctionFailed
+        - event: FundDistributed(indexed uint256,string[],uint256[])
+          handler: handleFundDistributed
+        - event: Funded(indexed uint256,string,address,address,uint256)
+          handler: handleFunded
+        - event: GitHubPassRegistered(string,address)
+          handler: handleGitHubPassRegistered
+        - event: OwnershipTransferRequested(indexed address,indexed address)
+          handler: handleOwnershipTransferRequested
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RequestFulfilled(indexed bytes32)
+          handler: handleRequestFulfilled
+        - event: RequestSent(indexed bytes32)
+          handler: handleRequestSent
+        - event: ShareWithdrwan(uint256,address,address,uint256)
+          handler: handleShareWithdrwan
+      file: ./src/git-hub-fund-manager.ts

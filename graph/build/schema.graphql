@@ -1,0 +1,93 @@
+type CalculationRequested @entity(immutable: true) {
+  id: Bytes!
+  fundId: BigInt! # uint256
+  ipfsHash: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ChainLinkFunctionFailed @entity(immutable: true) {
+  id: Bytes!
+  fundId: BigInt! # uint256
+  error: Bytes! # bytes
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FundDistributed @entity(immutable: true) {
+  id: Bytes!
+  fundId: BigInt! # uint256
+  logins: [String!]! # string[]
+  shares: [BigInt!]! # uint256[]
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Funded @entity(immutable: true) {
+  id: Bytes!
+  fundId: BigInt! # uint256
+  orgAndName: String! # string
+  funder: Bytes! # address
+  token: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type GitHubPassRegistered @entity(immutable: true) {
+  id: Bytes!
+  login: String! # string
+  addr: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferRequested @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  to: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  to: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RequestFulfilled @entity(immutable: true) {
+  id: Bytes!
+  GitHubFundManager_id: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RequestSent @entity(immutable: true) {
+  id: Bytes!
+  GitHubFundManager_id: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ShareWithdrwan @entity(immutable: true) {
+  id: Bytes!
+  fundId: BigInt! # uint256
+  token: Bytes! # address
+  account: Bytes! # address
+  share: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
